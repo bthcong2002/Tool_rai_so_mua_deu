@@ -6,7 +6,7 @@ import streamlit as st
 
 # Cấu hình trang giao diện Streamlit
 st.set_page_config(
-    page_title="Hệ Thống Rải Mua Đều Hàng Hóa - Ver 4",
+    page_title="Hệ Thống Rải Mua Đều Hàng Hóa",
     page_icon="📦",
     layout="wide",
     initial_sidebar_state="expanded",

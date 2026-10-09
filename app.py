@@ -258,7 +258,7 @@ with st.sidebar:
 st.markdown(
     """
     <div class="main-header">
-        <h1>📦 Rải Mua Đều Hàng Hóa (Ver 4)</h1>
+        <h1>📦 Rải Mua Đều Hàng Hóa </h1>
         <p>Hệ thống tự động phân bổ sản lượng mua đều theo Quy cách mua & Lịch giao hàng của Nhà cung cấp</p>
     </div>
     """,

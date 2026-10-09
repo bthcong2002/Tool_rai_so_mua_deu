@@ -1,4 +1,4 @@
-# 📦 Ứng Dụng Rải Mua Đều Hàng Hóa (Ver 4)
+# 📦 Ứng Dụng Rải Mua Đều Hàng Hóa
 
 Ứng dụng web xây dựng bằng **Streamlit** giúp tự động hóa thuật toán rải mua đều hàng hóa theo quy cách mua và lịch về hàng của nhà cung cấp.
 

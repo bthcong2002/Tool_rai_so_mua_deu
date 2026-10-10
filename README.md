@@ -11,7 +11,7 @@
   - Lịch cách ngày: Bắt đầu ngẫu nhiên theo nhịp và rải đều.
   - Xử lý phần lẻ chính xác, bảo toàn số lượng tổng mua.
 - **Thống kê Dashboard tức thì:** Đếm tổng số dòng, tổng sản lượng mới, tổng đã rải và xác thực sai lệch 100%.
-- **Xuất kết quả:** Xuất file Excel chuẩn (`Ket_qua_rai_mua_deuxlsx`) ngay trên trình duyệt.
+- **Xuất kết quả:** Xuất file Excel chuẩn (`Ket_qua_rai_mua_deu.xlsx`) ngay trên trình duyệt.
 
 ---
 

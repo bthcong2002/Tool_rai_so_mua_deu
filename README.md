@@ -6,12 +6,12 @@
 
 ## 🚀 Tính Năng Chính
 - **Giao diện thân thiện, trực quan:** Kéo thả upload file Excel (`.xlsx`, `.xls`).
-- **Tự động rải số theo Quy Cách & Lịch Về Hàng (Ver 4):**
+- **Tự động rải số theo Quy Cách & Lịch Về Hàng :**
   - Lịch full tuần: Phân bổ vòng đều các phần nguyên, nhảy bước với phần dư.
   - Lịch cách ngày: Bắt đầu ngẫu nhiên theo nhịp và rải đều.
   - Xử lý phần lẻ chính xác, bảo toàn số lượng tổng mua.
 - **Thống kê Dashboard tức thì:** Đếm tổng số dòng, tổng sản lượng mới, tổng đã rải và xác thực sai lệch 100%.
-- **Xuất kết quả:** Xuất file Excel chuẩn (`Ket_qua_rai_mua_deu_ver4.xlsx`) ngay trên trình duyệt.
+- **Xuất kết quả:** Xuất file Excel chuẩn (`Ket_qua_rai_mua_deuxlsx`) ngay trên trình duyệt.
 
 ---
 

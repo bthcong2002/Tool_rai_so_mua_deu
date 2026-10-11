@@ -6,7 +6,7 @@
 
 ## 🚀 Tính Năng Chính
 - **Giao diện thân thiện, trực quan:** Kéo thả upload file Excel (`.xlsx`, `.xls`).
-- **Tự động rải số theo Quy Cách & Lịch Về Hàng :**
+- **Tự động rải số theo Quy Cách & Lịch Về Hàng:**
   - Lịch full tuần: Phân bổ vòng đều các phần nguyên, nhảy bước với phần dư.
   - Lịch cách ngày: Bắt đầu ngẫu nhiên theo nhịp và rải đều.
   - Xử lý phần lẻ chính xác, bảo toàn số lượng tổng mua.
@@ -51,5 +51,20 @@ git push -u origin main
 4. Nhấn **New app**:
    - **Repository:** Chọn repository bạn vừa push (`<tai-khoan-github>/<ten-repo>`).
    - **Branch:** `main`
-   - **Main file path:** `app.py`
 5. Nhấn **Deploy** và chia sẻ đường link cho đội ngũ sử dụng!
+
+---
+
+## ⏰ Tự Động Ping Tránh App Bị Ngủ Đông (GitHub Actions)
+
+File workflow đã được chuẩn bị sẵn tại [`.github/workflows/keep_alive.yml`](file:///.github/workflows/keep_alive.yml). Workflow này sẽ tự động gửi request đến trang Streamlit **mỗi 3 tiếng một lần** để ngăn Streamlit Cloud chuyển sang trạng thái ngủ (Sleep mode).
+
+### Cách cấu hình URL app:
+1. Vào repository của bạn trên GitHub -> **Settings** -> **Secrets and variables** -> **Actions**.
+2. Nhấn **New repository secret**.
+3. Điền:
+   - **Name:** `STREAMLIT_APP_URL`
+   - **Secret:** Dán đường link app của bạn (VD: `https://rai-mua-deu.streamlit.app`).
+4. Nhấn **Add secret**.
+*(Hoặc bạn có thể sửa trực tiếp đường link app vào file `.github/workflows/keep_alive.yml`).*
+

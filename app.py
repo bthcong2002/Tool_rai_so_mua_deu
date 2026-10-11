@@ -74,7 +74,7 @@ DESIRED_ORDER = [
 
 def distribute_by_quycach(row):
     """
-    Thuật toán cốt lõi rải số mua đều theo Quy cách mua và Lịch về hàng (Ver 4)
+    Thuật toán cốt lõi rải số mua đều theo Quy cách mua và Lịch về hàng
     """
     lich_ve = row.get('Lịch về hàng')
     try:
@@ -229,6 +229,27 @@ def process_rai_mua_deu(df):
     return df_result[final_cols]
 
 
+import os
+
+def get_template_bytes():
+    """Đọc file Template.xlsx từ thư mục hoặc tự sinh fallback nếu chưa có file"""
+    template_path = os.path.join(os.path.dirname(__file__), 'Template.xlsx')
+    if os.path.exists(template_path):
+        with open(template_path, 'rb') as f:
+            return f.read()
+    else:
+        cols = [
+            'Mã siêu thị', 'Tên siêu thị', 'Mã sản phẩm', 'Tên sản phẩm',
+            'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN', 'Tổng cũ',
+            'Lịch về hàng', 'Quy cách mua', 'Tổng mới'
+        ]
+        sample_df = pd.DataFrame(columns=cols)
+        buf = io.BytesIO()
+        with pd.ExcelWriter(buf, engine='openpyxl') as writer:
+            sample_df.to_excel(writer, index=False, sheet_name='Sheet1')
+        return buf.getvalue()
+
+
 # ---------------------------------------------
 # SIDEBAR
 # ---------------------------------------------
@@ -248,6 +269,18 @@ with st.sidebar:
         """
     )
 
+    # Tải file mẫu từ Sidebar
+    st.markdown("---")
+    st.subheader("📥 File Excel Mẫu")
+    st.download_button(
+        label="📑 Tải Excel Mẫu (Template)",
+        data=get_template_bytes(),
+        file_name="Template.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        use_container_width=True,
+        help="Tải file mẫu định dạng chuẩn 15 cột để điền dữ liệu"
+    )
+
     st.markdown("---")
     st.info("💡 **Gợi ý quy ước Thứ trong tuần:**\n- `0`: Chủ Nhật\n- `1`: Thứ Hai\n- `2`: Thứ Ba\n- `3`: Thứ Tư\n- `4`: Thứ Năm\n- `5`: Thứ Sáu\n- `6`: Thứ Bảy")
 
@@ -258,14 +291,27 @@ with st.sidebar:
 st.markdown(
     """
     <div class="main-header">
-        <h1>📦 Rải Mua Đều Hàng Hóa </h1>
+        <h1>📦 Rải Mua Đều Hàng Hóa</h1>
         <p>Hệ thống tự động phân bổ sản lượng mua đều theo Quy cách mua & Lịch giao hàng của Nhà cung cấp</p>
     </div>
     """,
     unsafe_allow_html=True,
 )
 
-# Upload Section
+# Upload Section & Download Template
+up_col1, up_col2 = st.columns([3, 1.3])
+with up_col1:
+    st.subheader("1️⃣ Tải lên file dữ liệu của bạn")
+with up_col2:
+    st.download_button(
+        label="📥 Tải Excel Mẫu (Template)",
+        data=get_template_bytes(),
+        file_name="Template.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        use_container_width=True,
+        help="Bấm để tải về file Excel mẫu chuẩn theo định dạng hệ thống yêu cầu"
+    )
+
 uploaded_file = st.file_uploader(
     "📥 Tải lên file Excel cần rải số (Định dạng: .xlsx, .xls)",
     type=["xlsx", "xls"],
@@ -343,7 +389,7 @@ if uploaded_file is not None:
                 st.download_button(
                     label="💾 Tải Xuống File Kết Quả (.xlsx)",
                     data=buffer,
-                    file_name="Ket_qua_rai_mua_deu_ver4.xlsx",
+                    file_name="Ket_qua_rai_mua_deu.xlsx",
                     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     type="primary",
                     use_container_width=True,

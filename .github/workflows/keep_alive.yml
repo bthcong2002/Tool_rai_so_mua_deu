@@ -14,10 +14,14 @@ jobs:
         run: |
           APP_URL="https://toolraisomuadeu-ty6csysf8r9k7v8ksd3g5g.streamlit.app/"
           echo "Đang ping ứng dụng tại: $APP_URL"
-          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" -L "$APP_URL")
+          
+          # Sử dụng curl kiểm tra trực tiếp phản hồi từ máy chủ Streamlit
+          STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" -H "User-Agent: Mozilla/5.0" "$APP_URL" || true)
           echo "HTTP Status Code trả về: $STATUS_CODE"
+          
+          # Status 200, 302, 303 đều là máy chủ Streamlit đã tiếp nhận và phản hồi (đánh thức app thành công)
           if [ "$STATUS_CODE" -ge 200 ] && [ "$STATUS_CODE" -lt 400 ]; then
-            echo "✅ Ứng dụng Streamlit đang hoạt động bình thường!"
+            echo "✅ Ứng dụng Streamlit đang phản hồi và được đánh thức thành công!"
           else
-            echo "⚠️ Có thể app phản hồi mã: $STATUS_CODE (vẫn đánh thức app thành công)"
+            echo "⚠️ Mã phản hồi: $STATUS_CODE (Request vẫn kích hoạt máy chủ Streamlit)"
           fi

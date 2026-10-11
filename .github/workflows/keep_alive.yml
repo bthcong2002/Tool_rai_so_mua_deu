@@ -12,8 +12,7 @@ jobs:
     steps:
       - name: Ping Streamlit App
         run: |
-          # THAY ĐƯỜNG LINK APP CỦA BẠN VÀO DƯỚI ĐÂY (hoặc cấu hình secret APP_URL trong GitHub Repo Settings)
-          APP_URL="${{ secrets.STREAMLIT_APP_URL || 'https://share.streamlit.io' }}"
+          APP_URL="https://toolraisomuadeu-ty6csysf8r9k7v8ksd3g5g.streamlit.app/"
           echo "Đang ping ứng dụng tại: $APP_URL"
           STATUS_CODE=$(curl -s -o /dev/null -w "%{http_code}" -L "$APP_URL")
           echo "HTTP Status Code trả về: $STATUS_CODE"
